@@ -1,1 +1,1 @@
-# QuizHub, the next generation of ****Hub.
+# Quizhub, the next generation of P*rnhub for quizzes.
