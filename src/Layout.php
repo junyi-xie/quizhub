@@ -1,6 +1,5 @@
 <?php
 
-namespace Quizhub;
 
 class Layout
 {
