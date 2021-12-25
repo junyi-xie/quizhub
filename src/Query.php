@@ -6,17 +6,17 @@ namespace Quizhub;
 class Query
 {        
     /**
-     * Select function. Most parameters already have a default value, unless you wish to have a more complex selector.
+     * Select function.
      *
-     * @param string $sql Main select query, which does not contain the conditions.
-     * @param array $data Where the conditions will be filled in.
-     * @param int $mode Set fetch mode, https://www.php.net/manual/en/pdostatement.fetch.php
-     * @param bool $row On true if you wish to return rowCount, else its false on default and wont return rowCount.
-     * @param bool $fetch If you want to return a single array, fetch on true, otherwise fetch on false will return everything.
+     * @param string $sql The SQL string to select.
+     * @param array $data The data which will be used as parameters for the SQL.
+     * @param int $mode The PDO mode used while returning the query.
+     * @param bool $row Use if amount of rows needs to be returned.
+     * @param bool $fetch Set the fetch mode to be single or multiple.
      * 
-     * @return mixed Returns int if rowcount is true, else it returns array with data which you specified in the query.
+     * @return int|array 
      */
-    public function Select(string $sql, array $data = [], int $mode = \PDO::FETCH_OBJ, bool $row = false, bool $fetch = false) 
+    public function Select(string $sql, array $data = [], int $mode = \PDO::FETCH_OBJ, bool $row = false, bool $fetch = false)
     {
         $statement = $this->pdo->prepare($sql);
 
@@ -37,12 +37,12 @@ class Query
 
 
     /**
-     * Insert function. With the given table and data values filled in, it will automatically insert data into your given table.
+     * Insert function.
      *
-     * @param string $table Desired table you wish to insert data into.
-     * @param array $data This contains all the values that needs to be inserted.
+     * @param string $table The table specified to insert data in.
+     * @param array $data The data used to insert into the table.
      * 
-     * @return int Returns the inserted id.
+     * @return int
      */
     public function Insert(string $table, array $data)
     {
@@ -66,14 +66,14 @@ class Query
 
 
     /**
-     * Update function. This function is used to update a table, a few params need to be filled for it to work, usually the table, data and where clause. The limitor is on default set to 1, change if you wish to make a mass update on the same condition.
+     * Update function.
      *
-     * @param string $table Your given table which needs to be updated.
-     * @param array $data The data that is used to update the old fields.
-     * @param string $where Where clause, only update on your specified condition. 
-     * @param int $limit The limitor, its default is set to 1
+     * @param string $table The table specified to update from.
+     * @param array $data The data used to update the previous rows.
+     * @param string $where The condition for which rows should be updated.
+     * @param int $limit The maximum rows to get updated. 
      * 
-     * @return mixed Returns int if your table got update with your given data, else returns string with error message.
+     * @return int|null
      */
     public function Update(string $table, array $data, string $where, int $limit = 1)
     {
@@ -98,16 +98,16 @@ class Query
 
 
     /**
-     * Delete function. This function is used to delete data from your given table with your conditions and optional a limitor.
+     * Delete function.
      *
-     * @param string $table The table you wish to delete from.
-     * @param string $where Your own condition input.
-     * @param int $limit The maximum data you wish to delete at most. 
+     * @param string $table The table specified to get their items deleted from.
+     * @param string $where The condition for which rows should be deleted.
+     * @param int $limit The maximum rows to get deletd. 
      * 
-     * @return bool True if data got deleted, false if the data did not get deleted. 
+     * @return bool
      */
     public function Delete(string $table, string $where, int $limit = 1)
     {
-        return $this->pdo->query("DELETE FROM $table WHERE $where LIMIT $limit");
+        return $this->pdo->prepare("DELETE FROM $table WHERE $where LIMIT $limit")->execute();
     }
 }
