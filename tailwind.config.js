@@ -1,7 +1,18 @@
 module.exports = {
-  content: [],
+  mode: 'jit',
+  purge: ['./public/**/*.php'],
+  darkMode: false,
+  content: [
+    './public/**/*.php'
+  ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: '#FFA500',
+      }
+    },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 }
