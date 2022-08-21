@@ -9,4 +9,14 @@
     <footer>
 
     </footer>
+
+
     
+    <div class="flex bg-white text-primary">
+
+    </div>
+
+
+    <div class="flex bg-white text-primary">
+
+    </div>

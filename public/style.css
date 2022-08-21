@@ -588,3 +588,17 @@ select {
 [type='file']:focus {
   outline: 1px auto -webkit-focus-ring-color;
 }
+
+.flex {
+  display: flex;
+}
+
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.text-primary {
+  --tw-text-opacity: 1;
+  color: rgb(255 165 0 / var(--tw-text-opacity));
+}

@@ -1,9 +1,13 @@
 module.exports = {
   mode: 'jit',
-  purge: ['./public/**/*.php'],
+  purge: [
+    './public/**/*.php',
+    './view/**/*.php',
+  ],
   darkMode: false,
   content: [
-    './public/**/*.php'
+    './public/**/*.php',
+    './view/**/*.php'
   ],
   theme: {
     extend: {
